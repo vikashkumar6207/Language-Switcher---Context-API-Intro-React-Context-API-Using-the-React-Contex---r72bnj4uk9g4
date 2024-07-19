@@ -1,28 +1,20 @@
 "use client"
-
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useState, useContext } from 'react';
 
 const LanguageContext = createContext();
 
 export const useLanguage = () => {
-    return useContext(LanguageContext);
+  return useContext(LanguageContext);
+}
+
+export const LanguageProvider = ({ children }) => {
+  const [language, setLanguage] = useState('en');
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage }}>
+      {children}
+    </LanguageContext.Provider>
+  );
 };
 
-export const LanguageProvider = ({Children}) => {
-    
-    const [language, setLanguage] = useState("en");
-    
-    return (
-        <LanguageContext.Provider value={{language, setLanguage}}>
-            {Children}
-        </LanguageContext.Provider>
-    );
-};
-
-
-
-
-
-
-
-
+// export default LanguageContext;
